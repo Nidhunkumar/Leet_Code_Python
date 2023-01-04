@@ -18,25 +18,25 @@ Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
 Follow up: Could you solve it without converting the integer to a string?
 '''
 
-def isPalindrome(x):
-        if x < 0:
-            return False
-        else:
-            x_str = str(x)
-            i = 0
-            j = len(x_str)-1
+# def isPalindrome(x):
+#         if x < 0:
+#             return False
+#         else:
+#             x_str = str(x)
+#             i = 0
+#             j = len(x_str)-1
         
-            if j == 0:
-                return True
+#             if j == 0:
+#                 return True
         
-            while (x_str[i] == x_str[j]) and (i <= j):
-                i = i + 1
-                j = j - 1
+#             while (x_str[i] == x_str[j]) and (i <= j):
+#                 i = i + 1
+#                 j = j - 1
 
-            if i < j:
-                return False
-            else:
-                return True
+#             if i < j:
+#                 return False
+#             else:
+#                 return True
 
 '''
 Time: O(log x)
@@ -62,14 +62,19 @@ code3(less time)
         new_x = old_x[::-1]
         return old_x == new_x
 code4(less memory)
-
-
+'''
+x=121
 def isPalindrome(x):
         z = str(x)
         y = list(str(x))
         y.reverse()
+        print(y)
         y1 = "".join(y)
+        print(y1)
         return(bool(z==y1))
-'''
+isPalindrome(x)
+
+
+# '''
 
             
