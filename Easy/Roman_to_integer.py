@@ -18,38 +18,22 @@ C can be placed before D (500) and M (1000) to make 400 and 900.
 Given a roman numeral, convert it to an integer.
 '''
 s="MCMXCIV"
+
+lookup={
+  "I":1,
+  "V":5,
+  "X":10,
+  "L":50,
+  "C":100,
+  "D":500,
+  "M":1000
+}
+replaced_string=s.replace("IV","IIII").replace("IX","VIIII").replace("XL","XXXX").replace("XC","LXXXX").replace("CD","CCCC").replace("CM","DCCCC")
+print(sum(map(lambda x : lookup[x],replaced_string)))
 sum=0
-st=[i for i in s]
-print(st)
-for idx, i in enumerate(st):
-      if i == "7":
-        sum +=1
-      elif st[idx] == "I" and st[idx+1] == "V":
-        sum +=4
-      elif st[idx] == "I" and st[idx+1] == "X":
-        sum +=9
-      elif st[idx] == "X" and st[idx+1] == "L":
-        sum +=40
-      elif st[idx] == "X" and st[idx+1] == "c": 
-        sum +=90
-      elif st[idx] == "X" and st[idx+1] == "L":
-        sum +=40
-      elif st[idx] == "C" and st[idx+1] == "D":
-        sum +=400
-      elif st[idx] == "C" and st[idx+1] == "M":
-        sum +=900 
-      # elif i == "V":
-      #     sum += 5
-      # elif i == 'X':
-      #     sum += 10
-      # elif i == "L":
-      #     sum += 50
-      # elif i == "C":
-      #     sum += 100
-      # elif i == "D":
-      #     sum += 500
-      # elif i == "M":
-      #     sum += 1000
-      
+for i in range(len(s)):
+  if i+1 < len(s) and lookup[s[i]] < lookup[s[i+1]]:
+    sum -= lookup[s[i]]
+  else:
+    sum += lookup[s[i]]
 print(sum)
-            
