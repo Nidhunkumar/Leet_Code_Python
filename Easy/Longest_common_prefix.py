@@ -9,7 +9,45 @@ Input: strs = ["flower","flow","flight"]
 Output: "fl"
 Example 2:
 
-Input: strs = ["dog","racecar","car"]
+Input: strs = 
 Output: ""
 Explanation: There is no common prefix among the input strings.
 '''
+strs =["flower","flow","flight"]
+
+if not strs:
+        print("none")
+shortest = min(strs,key=len)
+for i, ch in enumerate(shortest):
+    for other in strs:
+        if other[i] != ch:
+            print(shortest[:i])
+print( shortest )
+
+#less time
+pre = strs[0]
+for i in strs:
+    while not i.startswith(pre):
+        pre = pre[:-1]
+
+return pre
+
+#less mem
+res = ""
+        
+for i in range(0, len(strs[0])):
+    for s in strs:
+        if len(s) == i or s[i] != strs[0][i]:
+            return res
+        res += strs[0][i]
+            
+return res
+
+
+
+
+
+
+# lookup={strs[x]:x for x in range(len(strs))}
+# for i in strs:
+#     if i+1 < len(strs) and strs[i] == 
