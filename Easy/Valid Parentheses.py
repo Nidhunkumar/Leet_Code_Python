@@ -21,11 +21,32 @@ Example 3:
 
 Input: s = "(]"
 Output: false
- '''
-s = "()[]{"
-lookup={1:"(",2:")",3:"{",4:"}",5:"[",6:"]"}
-count=0
+#  '''
+# s = "()[]{"
+# lookup={1:"(",2:")",3:"{",4:"}",5:"[",6:"]"}
+# count=0
+# l1=[]
+# for i in s:
+#    if i  in lookup.values():
+#     l1.append(i)
+# for j in l1:
+#   if j in list(lookup.values()):
+#     print(j)
+
+# #print(l1)
+'''Write a python program to print the count of strips/Line used to display a digit (Digits in Calculator Font).
+
+For example :
+Input - 123
+Output - No. of strips Required : 12
+
+'''
+s="{})([]"
+dict1 = {'(':')', '[':']', '{':'}'}
+temp = []
 for i in s:
-  if i  in lookup.values():
-    print(i)
-#print(count)
+          if i in dict1:
+              temp.append(i)
+          elif len(temp) == 0 or dict1[temp.pop()] != i:
+              return False
+      return len(temp) == 0
