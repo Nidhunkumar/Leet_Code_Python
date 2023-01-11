@@ -50,3 +50,38 @@ for i in s:
           elif len(temp) == 0 or dict1[temp.pop()] != i:
               return False
       return len(temp) == 0
+
+
+'''
+less memory
+
+
+  def isValid(self, s: str) -> bool:
+        stack = []
+        d = {')': '(', '}': '{', ']': '['}
+        for i in s:
+            if i in d:
+                if stack and stack[-1] == d[i]:
+                    stack.pop()
+                else:
+                    return False
+            else:
+                stack.append(i)
+        return True if not stack else False
+
+less time
+
+ def isValid(self, s: str) -> bool:
+        dict1 = {'(':')', '[':']', '{':'}'}
+        temp = []
+        for i in s:
+            if i in dict1:
+                temp.append(i)
+            elif len(temp) == 0 or dict1[temp.pop()] != i:
+                return False
+        return len(temp) == 0
+
+
+
+
+'''
