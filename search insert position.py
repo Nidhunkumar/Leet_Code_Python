@@ -18,3 +18,40 @@ Example 3:
 Input: nums = [1,3,5,6], target = 7
 Output: 4
 '''
+if target not in nums:
+            nums.append(target)
+            nums[:]=sorted(nums)
+            return nums.index(target)
+        else:
+            for  i in nums:
+                if target == i:
+                    return nums.index(i)
+
+
+ 
+        left=0
+        right=len(nums)-1
+        #mid=(left+right)//2
+        
+        while left<=right:
+            mid = (left+right) // 2
+            if nums[mid]==target:
+                return mid
+            elif target <nums[mid]:
+                right= mid-1
+               
+            elif target>nums[mid]:
+                left=mid+1
+                
+        if nums[mid] > target:
+            return mid
+        else:
+            return mid + 1
+
+
+
+less memory
+   if target not in nums:
+            nums.append(target)
+            nums.sort()
+        return nums.index(target)
