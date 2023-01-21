@@ -38,6 +38,8 @@ for j in str(b):
 return c
 
 # return[int(x) for x in str(int(''.join([str(x) for x in digits])) + 1)]
+
+
 less time
 rem = 1
 for i in range(len(digits) - 1, -1, -1):
@@ -48,9 +50,12 @@ for i in range(len(digits) - 1, -1, -1):
         return digits
 digits.insert(0, 1)
 return digits
+
+
 less memory
 digits = "".join(map(str, digits))
        digits = int(digits)
        digits = digits + 1
        list_digits = [int(x) for x in str(digits)]
        return list_digits
+
