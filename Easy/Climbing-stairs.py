@@ -21,3 +21,48 @@ Explanation: There are three ways to climb to the top.
 2. 1 step + 2 steps
 3. 2 steps + 1 step
 '''
+
+def climbStairs(self, n: int) -> int:
+        a, b = 0, 1
+        for i in range(n):
+            a, b = b, a + b
+        return b
+
+
+'''
+less time
+def util(n):
+    if n == 0:
+        return 1
+    
+    if n < 0:
+        return 0
+    
+    if n in util.mem:
+        return util.mem[n]
+    
+    util.mem[n] = util(n-1) + util(n-2)
+    return util.mem[n]
+    
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        util.mem = {}
+        return util(n)
+        
+
+
+  less space
+    def climbStairs(self, n: int) -> int:
+        if n == 1: return 1
+        if n == 2: return 2
+        firstStep, secondStep, total = 1, 2, 0
+
+        for i in range(3, n + 1):
+            total = firstStep + secondStep
+            firstStep = secondStep
+            secondStep = total
+
+        return total
+
+'''
