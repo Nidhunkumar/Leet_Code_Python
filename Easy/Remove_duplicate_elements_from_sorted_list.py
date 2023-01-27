@@ -15,3 +15,23 @@ Example 2:
 Input: head = [1,1,2,3,3]
 Output: [1,2,3]
 '''
+
+if not head:
+            return None
+
+        curr = head
+
+        while curr.next:
+            if curr.val == curr.next.val:
+                curr.next = curr.next.next
+            else:
+                curr = curr.next
+
+        return head
+
+         temp=head
+        while temp:
+            while temp.next!=None and temp.val == temp.next.val:
+                temp.next=temp.next.next
+            temp=temp.next
+        return head
