@@ -27,3 +27,38 @@ Explanation: The arrays we are merging are [] and [1].
 The result of the merge is [1].
 Note that because m = 0, there are no elements in nums1. The 0 is only there to ensure the merge result can fit in nums1.
 '''
+nums1 = [1,2,3,0,0,0]
+m = 3
+nums2 = [2,5,6]
+n = 3 
+nums1[m:m+n] = nums2
+return nums1.sort()
+
+#less time
+ idx1 = m - 1
+        idx2 = n - 1
+
+        finalIdx = n + m - 1
+
+        while 0 <= idx2:
+            if 0 <= idx1 and nums1[idx1] > nums2[idx2]:
+                nums1[finalIdx] = nums1[idx1]
+                idx1 -= 1
+            else:
+                nums1[finalIdx] = nums2[idx2]
+                idx2 -= 1
+
+            finalIdx -= 1
+#less memory
+  i = m - 1
+        j = n - 1
+        k = m + n - 1
+        while j >= 0:
+            if i >= 0 and nums1[i] > nums2[j]:
+                nums1[k] = nums1[i]
+                k -= 1
+                i -= 1
+            else:
+                nums1[k]= nums2[j]
+                k -= 1
+                j -= 1

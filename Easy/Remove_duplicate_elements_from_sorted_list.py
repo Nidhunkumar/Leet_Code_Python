@@ -35,3 +35,17 @@ if not head:
                 temp.next=temp.next.next
             temp=temp.next
         return head
+
+#---------------
+if not head or not head.next:
+            return head
+        prev=head
+        ptr=head.next
+        while(ptr):
+            while(ptr and ptr.val==prev.val):
+                ptr=ptr.next
+            prev.next=ptr
+            prev=ptr
+            if ptr:
+                ptr=ptr.next
+        return head
