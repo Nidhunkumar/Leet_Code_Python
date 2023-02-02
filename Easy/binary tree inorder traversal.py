@@ -17,3 +17,29 @@ Example 3:
 Input: root = [1]
 Output: [1]
 '''
+
+  stack = []
+        def traverse(root):
+            #base condition
+            if root is None:
+                return None
+             #visit left tree
+            traverse(root.left)
+            #visit base node
+            stack.append(root.val)
+            # visit right node
+            traverse(root.right)
+        traverse(root)
+
+#less time
+
+        res, stack = [], []
+        while root or stack:
+            if root:
+                stack.append(root)
+                root = root.left
+            else:
+                node = stack.pop()
+                res.append(node.val)
+                root = node.right
+        return res
