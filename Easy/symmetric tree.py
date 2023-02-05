@@ -23,3 +23,20 @@ Output: false
         return self.isTreeSymmetric(leftRoot.left, rightRoot.right) and self.isTreeSymmetric(leftRoot.right, rightRoot.left)
     def isSymmetric(self, root):
         return self.isTreeSymmetric(root.left, root.right)
+
+
+         #inner function
+        def compareSides( left, right):
+            #base case
+            if left is None and right is None:
+                return True
+            #if left and right both value exists and equal
+            elif left and right and (left.val == right.val) :
+                # recursively call compareSides function for left and right side
+                return   compareSides(left.left, right.right) and compareSides(left.right, right.left)
+                 
+            # otherwise return false
+            else:
+                return False           
+    
+        return compareSides(root.left, root.right)
