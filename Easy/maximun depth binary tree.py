@@ -13,3 +13,9 @@ Example 2:
 
 Input: root = [1,null,2]
 Output: 2'''
+ def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if not root: return 0
+        maxLeft = self.maxDepth(root.left)
+        maxRight = self.maxDepth(root.right)
+        return max(maxLeft, maxRight) + 1
+
