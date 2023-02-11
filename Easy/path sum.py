@@ -24,3 +24,33 @@ Example 3:
 Input: root = [], targetSum = 0
 Output: false
 Explanation: Since the tree is empty, there are no root-to-leaf paths.'''
+def rootToLeafPathSum(self, root: TreeNode, targetSum: int, sum: int) -> bool:
+        if root is None:
+            return False
+        if root.left is None and root.right is None:
+            sum += root.val
+            if sum == targetSum:
+                return True   
+        return self.rootToLeafPathSum(root.left, targetSum, sum + root.val) or self.rootToLeafPathSum(root.right, targetSum, sum + root.val)
+
+    def hasPathSum(self, root: TreeNode, targetSum: int) -> bool:
+        sum = 0
+        return self.rootToLeafPathSum(root, targetSum, sum)
+
+#less time
+ def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        if not root:
+            return False
+
+        def rc(node, pathSum):
+            if not node:
+                return False
+
+            #print(f'Adding {node.val}')
+
+            if not node.left and not node.right:
+                return pathSum + node.val == targetSum
+
+            return rc(node.left, pathSum + node.val) or rc(node.right, pathSum + node.val)
+
+        return rc(root, 0)
