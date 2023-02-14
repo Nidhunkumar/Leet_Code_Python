@@ -17,25 +17,32 @@ Example 3:
 
 Input: rowIndex = 1
 Output: [1,1]'''
-numRows=5
+def getRow(self, rowIndex: int) -> List[int]:
 #list to store triangle 
-triangle = []
-#add first row which is always 1
-triangle.append([1])
+        triangle = []
+        #add first row which is always 1
+        triangle.append([1])
+        
+        #run for loop for numRows-1
+        for i in range(rowIndex):
+            #list to store row#Initialize with 1 as 1st element is always 1
+            new=[1]#run for loop to add 2 numbers of previous rows
+            for j in range(0,i):
+                new.append(triangle[i][j]+triangle[i][j+1])
+            #add last element of row
+            new.append(1)
+            #add row in a triangle
+            triangle.append(new)
+        return triangle[rowIndex]
 
-#run for loop for numRows-1 
-# for i in range(numRows-1):
-#   #list to store row#Initialize with 1 as 1st element is always 1
-#   new=[1]#run for loop to add 2 numbers of previous rows
-#   for j in range(0,i):
-#       print(i,j)
-#       new.append(triangle[i][j]+triangle[i][j+1])
-#   #add last element of row
-#   new.append(1)
-#   #add row in a triangle
-#   triangle.append(new)
-for i in range(5):
-    print(i)
-    new=[1]
-    print(new)
+#less time
+def getRow(self, rowIndex: int) -> List[int]:
+        if rowIndex == 0:
+            return [1]
+        lastRow = self.getRow(rowIndex-1)
+        res = [1]
+        for i in range(len(lastRow)-1):
+            res.append(lastRow[i]+lastRow[i+1])
+        res.append(1)
+        return res
   
