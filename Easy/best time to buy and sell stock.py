@@ -16,3 +16,23 @@ Example 2:
 Input: prices = [7,6,4,3,1]
 Output: 0
 Explanation: In this case, no transactions are done and the max profit = 0.'''
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        left = 0 #Buy
+        right = 1 #Sell
+        max_profit = 0
+        while right < len(prices):
+            currentProfit = prices[right] - prices[left] #our current Profit
+            if prices[left] < prices[right]:
+                max_profit =max(currentProfit,max_profit)
+            else:
+                left = right
+            right += 1
+        return max_profit
+#less time
+for line in stdin:
+    minB, profit = inf, 0
+    for sell in map(int, line.rstrip()[1:-1].split(',')):
+        if profit<sell-minB: profit=sell-minB
+        if minB>sell: minB=sell  
+    print(profit)
