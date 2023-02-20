@@ -19,3 +19,17 @@ Example 3:
 Input: nums = [1]
 Output: 1
 '''
+
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        return 2*sum(set(nums))-sum(nums)
+
+
+#less time
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        xor = 0
+        for num in nums:
+            xor ^= num
+        
+        return xor
