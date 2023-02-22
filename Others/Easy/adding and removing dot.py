@@ -8,3 +8,23 @@ If both functions are correct, calling remove_dots(add_dots(string)) should retu
 
 (You may assume that the input to add_dots does not itself contain any dots.)
 '''
+def add_dots(s):
+    return ".".join(s)
+
+def remove_dots(s):
+    return s.replace(".", "")
+
+
+#2nd way
+def add_dots(s):
+    out = ""
+    for letter in s:
+        out += letter + "."
+    return out[:-1]
+
+def remove_dots(s):
+    out = ""
+    for letter in s:
+        if letter != ".":
+            out += letter
+    return out
