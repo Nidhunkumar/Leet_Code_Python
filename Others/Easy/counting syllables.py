@@ -12,3 +12,24 @@ Your function should count the number of syllables and return it.
 
 For example, the call count("ho-tel") should return 2.
 '''
+# def count(s):
+#     c=[]
+#     for i,j in enumerate(s):
+#       return j
+# # naive solution
+# def count(word):
+#     syllables = 1
+#     for letter in word:
+#         if letter == "-":
+#             syllables = syllables + 1
+#     return syllables
+
+# # using the count method
+# def count(word):
+#     return word.count("-") + 1
+
+
+# # using split
+
+# def count(word):
+#     return len(word.split("-"))    
