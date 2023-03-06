@@ -15,6 +15,16 @@ Explanation: There is no common prefix among the input strings.
 '''
 strs =["flower","flow","flight"]
 
+
+
+
+
+
+
+
+
+
+
 if not strs:
         print("none")
 shortest = min(strs,key=len)
@@ -45,9 +55,3 @@ return res
 
 
 
-
-
-
-# lookup={strs[x]:x for x in range(len(strs))}
-# for i in strs:
-#     if i+1 < len(strs) and strs[i] == 

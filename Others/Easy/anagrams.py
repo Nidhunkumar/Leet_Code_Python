@@ -13,14 +13,18 @@ def is_anagram(string1, string2):
 # count how many times each letter appears in each string,
 # and make sure all the counts are the same.
 string="python"
-string1="pythooooon"
+string1="nyhpto"
 def count_letters(string):
     return {l: string.count(l) for l in string}
+
+s1=count_letters(string1)
+s2=count_letters(string)
 print(count_letters(string1))
+print(count_letters(string))
 
 
-def is_anagram(string1, string2):
-    return count_letters(string1) == count_letters(string2)
+# def is_anagram(string1, string2):
+#     return count_letters(string1) == count_letters(string2)
 
 
     

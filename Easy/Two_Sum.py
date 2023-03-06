@@ -15,8 +15,63 @@ Output: [1,2]
 
 Input: nums = [3,3], target = 6
 Output: [0,1]
-
+ ___
+ |_|
+ |_|
+ 
 '''
+nums=123 
+i=nums%10
+n=nums//10
+print(n)
+
+
+# lookup={
+#      0:6,
+#      1:2,
+#      2:5,
+#      3:5,
+#      4:4,
+#      5:5,
+#      6:6,
+#      7:3,
+#      8:7,
+#      9:6
+# }
+# result=0
+# for i in nums:
+#      result += lookup[i]
+# print(result)
+     
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 nums=[1,2,4,7,8]
 def twoSum(nums, target):

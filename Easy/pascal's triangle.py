@@ -21,7 +21,7 @@ Output: [[1]]
         triangle = []
         #add first row which is always 1
         triangle.append([1])
-        
+         
         #run for loop for numRows-1
         for i in range(numRows-1):
             #list to store row#Initialize with 1 as 1st element is always 1
@@ -37,7 +37,6 @@ Output: [[1]]
 #less time
  def generate(self, numRows: int) -> List[List[int]]:
         a = [[1]]
-
         for i in range(1,numRows):
             numls = [x+y for x,y in zip([0]+a[i-1],a[i-1]+[0])]
             a.append(numls)
