@@ -19,6 +19,13 @@ Example 3:
 Input: nums = [1]
 Output: 1
 '''
+nums = [1,2,2,2,4,4,4]
+cnt={nums.count(i):i for i in nums }
+print(cnt[min(cnt.keys())])
+
+
+'''
+ 
 
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
@@ -33,3 +40,6 @@ class Solution:
             xor ^= num
         
         return xor
+
+
+        '''
