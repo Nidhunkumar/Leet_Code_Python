@@ -10,5 +10,4 @@ def triple_and(num1,num2,num3):
 def triple_and(a, b, c):
     return a and b and c
 
-print(triple_and(1,4,2))
-
+#print(triple_and(1,4,2))
