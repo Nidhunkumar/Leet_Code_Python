@@ -28,7 +28,6 @@ Explanation: In this case, no transactions are done and the max profit = 0.'''
 #         left = right
 #     right += 1
 # print(max_profit)
-print(6   <6)
 
         
 
