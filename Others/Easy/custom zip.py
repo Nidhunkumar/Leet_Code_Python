@@ -24,26 +24,35 @@ Should return:
 
 a=[1,2,3,5]
 b=[1,2,3,5]
-#print(list(zip(a,b)))
-tup=()
-ls=[]
-for i in range(len(a)):
-  tup=(a[i],b[i],)
-  ls.append(tup)
+# #print(list(zip(a,b)))
+# tup=()
+# ls=[]
+# for i in range(len(a)):
+#   tup=(a[i],b[i],)
+#   ls.append(tup)
 
-print(ls)
+# print(ls)
+
+
 
 
 # ugly but understandable solution
+
+
+
+
 def zap(a, b):
     result = []
     for i in range(len(a)):
         item_from_a = a[i]
-        item_from_b = b[i]
+        item_from_b = b[i] 
         tup = (item_from_a, item_from_b)
         result.append(tup)
     return result
+print(zap(a,b))
+
+
 
 # concise solution with list comprehensions
-def zap(a, b):
-    return [(a[i], b[i]) for i in range(len(a))]
+# def zap(a, b):
+#     return [(a[i], b[i]) for i in range(len(a))]
