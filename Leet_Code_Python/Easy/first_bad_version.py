@@ -1,9 +1,7 @@
 '''
 278. First Bad Version
-Easy
-7.5K
-3K
-Companies
+
+
 You are a product manager and currently leading a team to develop a new product. Unfortunately, the latest version of your product fails the quality check. Since each version is developed based on the previous version, all the versions after a bad version are also bad.
 
 Suppose you have n versions [1, 2, ..., n] and you want to find out the first bad one, which causes all the following ones to be bad.
@@ -29,3 +27,60 @@ Output: 1
 
 
 '''
+# The isBadVersion API is already defined for you.
+# def isBadVersion(version: int) -> bool:
+
+class Solution:
+    def firstBadVersion(self, n: int) -> int:
+        left, right = 0,n
+        possibleValue = -1
+        
+        
+        while left <= right:
+            
+            mid = left + (right-left)//2
+            PotentialTrue = isBadVersion(mid)
+
+	
+            if PotentialTrue:
+                possibleValue = mid
+                right = mid -1
+            
+            else:
+                left = mid + 1
+                
+        return possibleValue
+
+#less time
+# The isBadVersion API is already defined for you.
+# def isBadVersion(version: int) -> bool:
+
+class Solution:
+    def firstBadVersion(self, n: int) -> int:
+        low, high = 1, n
+        while high >= low:
+            mid = (high + low) // 2
+            if isBadVersion(mid):
+                if not (isBadVersion(mid-1)):
+                    return mid
+                high = mid - 1
+            else:
+                low = mid + 1
+        return high
+
+#less memory
+# The isBadVersion API is already defined for you.
+# def isBadVersion(version: int) -> bool:
+
+class Solution:
+    def firstBadVersion(self, n: int) -> int:
+        left = 0
+        right = n
+
+        while left < right:
+            mid = (left+right) // 2
+            if isBadVersion(mid):
+                right = mid
+            else:
+                left = mid + 1
+        return left
