@@ -33,3 +33,23 @@ Input: n = 2
 Output: true
 
 '''
+
+class Solution:
+    def canWinNim(self, n: int) -> bool:
+        return n % 4 != 0
+    
+
+#less time
+class Solution:
+    def canWinNim(self, n: int) -> bool:
+        if n % 4 == 0:
+            return False
+        else:
+            return True
+
+
+#less memory
+class Solution:
+    def canWinNim(self, n: int) -> bool:
+        return (n % 4 != 0)
+    
