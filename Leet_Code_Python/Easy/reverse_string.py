@@ -17,3 +17,34 @@ Input: s = ["H","a","n","n","a","h"]
 Output: ["h","a","n","n","a","H"]
 
 '''
+
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        print(s.reverse())
+      
+#less time
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        left = 0
+        right = len(s) -1 
+        while left < right:
+            s[left], s[right] = s[right], s[left]
+            left+=1
+            right-=1
+        
+
+#less memory
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        mid = len(s) // 2
+        for i in range(mid):
+            s[i], s[len(s) - 1 - i] = s[len(s) - 1 - i], s[i]
