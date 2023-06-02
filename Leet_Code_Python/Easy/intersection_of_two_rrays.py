@@ -16,3 +16,27 @@ Output: [9,4]
 Explanation: [4,9] is also accepted.
 
 '''
+
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        return list(set(nums1).intersection(set(nums2)))
+    
+#less time
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        set1 = set(nums1)
+        ans = set()
+        for n in nums2:
+            if n in set1:
+                ans.add(n)
+        return list(ans)
+
+#less memory
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        h = []
+        for i in nums1:
+            for j in nums2:
+                if i==j:
+                    h.append(i)
+        return set(h)
