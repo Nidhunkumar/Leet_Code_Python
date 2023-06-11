@@ -26,3 +26,63 @@ Output: []
 
 
 '''
+class Solution:
+    def readBinaryWatch(self, turnedOn: int) -> List[str]:
+        output = []
+        # Loop through all possible combinations of hours and minutes and count the number of set bits
+        for h in range(12):
+            for m in range(60):
+                if bin(h).count('1') + bin(m).count('1') == turnedOn:  # Check if the number of set bits in hours and minutes equals the target number
+                    output.append(f"{h}:{m:02d}")  # Add the valid combination of hours and minutes to the output list
+        return output
+
+
+#less time
+class Solution:
+    def nextBinary(self, current: int) -> int:
+        if current == 0:
+            return 0
+        rightOne = current & -(current)
+        nextHigherOneBit = current + int(rightOne)
+        rightOnesPattern = current ^ int(nextHigherOneBit)
+        rightOnesPattern = (int(rightOnesPattern) / int(rightOne))
+        rightOnesPattern = int(rightOnesPattern) >> 2
+        return nextHigherOneBit | rightOnesPattern
+
+
+    def readBinaryWatch(self, turnedOn: int) -> List[int]:
+        current = 2**turnedOn-1
+        lowest = 63
+        listTime=[]
+        hours = 0
+        if turnedOn == 0:
+            return ["0:00"]
+        while hours < 12:
+            minutes = current & lowest
+            hours = current >> 6
+            if minutes<60 and hours <12:
+                listTime.append(f'{hours}:{minutes:02}')
+            current = self.nextBinary(current)
+        return listTime
+    
+#less memory
+class Solution:
+    def readBinaryWatch(self, turnedOn: int) -> List[str]:
+        result = []
+        for i in range(2 ** 10):
+            dcount = 0
+            n = i
+            mins = 0
+            hours = 0
+            for j in range(10):
+                digit = n % 2
+                dcount += digit
+                if j < 6:
+                    mins += 2 ** j * digit
+                else:
+                    hours += 2 ** (j - 6) * digit
+                n = n // 2
+            if dcount == turnedOn and mins < 60 and hours < 12:
+                mstr = ("0" + str(mins))[-2:]
+                result.append(str(hours) + ":" + mstr)
+        return result
