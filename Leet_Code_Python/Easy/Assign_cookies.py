@@ -21,3 +21,47 @@ You have 3 cookies and their sizes are big enough to gratify all of the children
 You need to output 2.
 
 '''
+
+class Solution:
+    def findContentChildren(self, g: List[int], s: List[int]) -> int:
+        g.sort()
+        s.sort()
+        i, j = 0, 0
+        while i < len(g) and j < len(s):
+            if s[j] >= g[i]:
+                i += 1
+            j += 1
+        return i
+    
+#less time
+class Solution:
+    def findContentChildren(self, children: List[int], cookies: List[int]) -> int:
+        children.sort(reverse=True)
+        cookies.sort(reverse=True) 
+        count = 0
+    
+        while True:
+            if not cookies or not children:
+                break
+            else:
+                cookie = cookies.pop()
+                
+                if cookie >= children[-1]:
+                    count += 1
+                    children.pop()
+                    
+        return count
+
+#less memory
+class Solution:
+    def findContentChildren(self, g: List[int], s: List[int]) -> int:
+        res = 0
+        g.sort()
+        s.sort()
+        while len(g) > 0 and len(s) > 0:
+            if s[0] >= g[0]:
+                res += 1
+                g.pop(0)
+            s.pop(0)
+        return res
+
