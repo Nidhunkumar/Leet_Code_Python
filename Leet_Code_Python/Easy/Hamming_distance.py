@@ -20,3 +20,31 @@ Input: x = 3, y = 1
 Output: 1
 
 '''
+
+class Solution:
+    def hammingDistance(self, x: int, y: int) -> int:
+        result=x^y
+        d=0
+        while result:
+            if result & 1:
+                d+=1
+            result>>=1
+        return d
+    
+#less time
+class Solution:
+    def hammingDistance(self, x: int, y: int) -> int:
+        z = x ^ y
+        
+        i = z
+        count = 0
+        while i > 0:
+            count += i % 2
+            i = i // 2
+        
+        return count
+
+#less memory
+class Solution:
+    def hammingDistance(self, x: int, y: int) -> int:
+        return (x ^ y).bit_count()
