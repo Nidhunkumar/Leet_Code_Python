@@ -23,3 +23,27 @@ Output: 0
 Explanation: The binary representation of 1 is 1 (no leading zero bits), and its complement is 0. So you need to output 0.
 
 '''
+
+class Solution:
+    def findComplement(self, num: int) -> int:
+        return (int((bin(n)[2:]).replace('1', '2').replace('0','1').replace('2','0'),2))
+
+        return (int((bin(n)[2:]).translate(str.maketrans("01", "10")),2))
+    
+#less time
+
+class Solution:
+    def findComplement(self, num: int) -> int:
+        i: int = 1
+        while i <= num:
+            i <<= 1
+        return i - num - 1
+    
+#less memory
+class Solution:
+    def findComplement(self, num: int) -> int:
+        import math
+
+        binary_digit = math.floor(math.log2(num))
+        all_f = 2 ** (binary_digit + 1) - 1
+        return num ^ all_f
