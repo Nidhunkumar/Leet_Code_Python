@@ -20,3 +20,57 @@ Output: "2-5G-3J"
 Explanation: The string s has been split into three parts, each part has 2 characters except the first part as it could be shorter as mentioned above.
 
 '''
+
+class Solution:
+    def licenseKeyFormatting(self, s: str, k: int) -> str:
+            # Remove dashes and convert lowercase letters to uppercase
+        s = s.replace('-', '').upper()
+        n = len(s)
+    
+    # Calculate length of first group
+        first_len = n % k
+    
+    # Construct the reformatted license key
+        reformatted = s[:first_len]
+        for i in range(first_len, n, k):
+            reformatted += '-' + s[i:i+k]
+        
+        if not reformatted:
+            return ""
+        elif reformatted[0] == "-":
+            return reformatted[1:]
+        else:
+            return reformatted
+
+#less time
+class Solution:
+    def licenseKeyFormatting(self, s: str, k: int) -> str:
+        groups = s.split("-")
+        joined = "".join(groups)
+        joined = joined.upper()
+
+        start = len(joined) % k
+        answer = joined[:start]
+
+        for i in range(start, len(joined)-k+1,k):
+            if i != 0:
+                answer += "-"
+            answer += joined[i:i+k]
+        return answer
+
+
+#less time
+class Solution:
+    def licenseKeyFormatting(self, s: str, k: int) -> str:
+
+        s = s.upper().replace('-', '')[::-1]
+        res = ''
+
+        while s != '':
+            res += s[:k] + '-'
+            s = s[k:]
+        return res[:-1][::-1]
+
+
+
+
