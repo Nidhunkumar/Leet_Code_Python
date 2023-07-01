@@ -25,3 +25,53 @@ Input: area = 122122
 Output: [427,286]
 
 '''
+
+class Solution:
+    def constructRectangle(self, area: int) -> List[int]:
+        for i in range(int(sqrt(area)), 0, -1):
+            if area % i == 0:
+                return [area // i, i]
+            
+#less time
+class Solution:
+    def constructRectangle(self, area: int) -> List[int]:
+        res=[area,1]
+        l=0
+        for i in range(1,(area//2)+1):
+            if area%i!=0:
+                continue
+            l=area//i
+            if l<i:
+                break
+            res=[l,i]
+        return res
+
+#less memory
+class Solution:
+    def constructRectangle(self, area: int) -> List[int]:
+        ls = [1, 1]
+        difference = area
+        for i in range(1, area // 2 + 1):
+            if area % i == 0:
+                print(i, end=" ")
+                div = area // i
+                if difference > abs(div - i):
+                    difference = abs(div - i)
+                    ls = [div, i]
+        return ls
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+               
+                
