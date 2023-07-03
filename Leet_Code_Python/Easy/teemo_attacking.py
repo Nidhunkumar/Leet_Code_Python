@@ -28,3 +28,71 @@ Ashe is poisoned for seconds 1, 2, and 3, which is 3 seconds in total.
 
 
 '''
+
+class Solution:
+  def findPoisonedDuration(self, timeSeries: List[int], duration: int) -> int:
+    if not timeSeries:
+        return 0
+    n = len(timeSeries)
+    poisoned_time = 0
+    
+    for i in range(n-1):
+        # calculate the duration of the poison effect
+        duration_of_effect = min(duration, timeSeries[i+1]-timeSeries[i])
+        poisoned_time += duration_of_effect
+        
+    # add the duration of the last poison effect
+    poisoned_time += duration
+    
+    return poisoned_time
+
+#less time
+class Solution:
+    def findPoisonedDuration(self, timeSeries: List[int], duration: int) -> int:
+
+        poisoned_start = timeSeries[0]
+        poisoned_end = timeSeries[0] + duration
+        poisoned_total = 0
+        for time in timeSeries:
+
+            if time <= poisoned_end:
+                poisoned_total += (time - poisoned_start)
+            else:
+                poisoned_total += duration
+            
+            poisoned_start = time
+            poisoned_end = poisoned_start + duration
+        
+        poisoned_total += duration
+        return poisoned_total
+                
+#less memory
+class Solution:
+    def findPoisonedDuration(self, timeSeries: List[int], duration: int) -> int:
+
+        #poisoned_times = {t + x for x in range(duration) for t in timeSeries}
+
+        poisoned_time = 0
+        last_poisoned_time = -1
+        remaining_times = timeSeries
+        while len(remaining_times)>0:
+            if last_poisoned_time >= remaining_times[0]:
+                additional_time = remaining_times[0] + duration - last_poisoned_time
+            else:
+                additional_time = duration
+            poisoned_time += additional_time
+            last_poisoned_time = remaining_times[0] + duration
+            remaining_times.pop(0)
+            # remove all that have been eliminated other than last
+            while len(remaining_times)> 1 and remaining_times[1] < last_poisoned_time:
+                remaining_times.pop(0)
+
+        return poisoned_time
+
+
+
+
+
+
+        return len(poisoned_times)
+
