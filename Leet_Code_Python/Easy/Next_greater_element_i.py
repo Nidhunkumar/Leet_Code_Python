@@ -29,3 +29,57 @@ Explanation: The next greater element for each value of nums1 is as follows:
 
 
 '''
+
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        mapp = {x:-1 for x in nums1}
+        stack = []
+
+        for num in nums2:
+            while stack and stack[-1] < num:
+                prev_num = stack.pop()
+                mapp[prev_num] = num
+            stack.append(num)
+        return [mapp[x] for x in nums1]
+    
+
+#less time
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        
+        stack = []
+        results = {}
+        
+        for i in range(len(nums2)):
+            
+            while stack and stack[-1] < nums2[i]:
+                element = stack.pop()
+                results[element] = nums2[i]
+            
+            stack.append(nums2[i])
+        
+        while stack:
+            element = stack.pop()
+            results[element] = -1
+        
+        
+        ans = []
+        for i in range(len(nums1)):
+            if nums1[i] in results:
+                ans.append(results[nums1[i]])
+        
+        return ans
+    
+#less memory
+
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        stack = []
+        res = [-1]*len(nums2)
+        for i in range(len(nums2)):
+            while stack and nums2[i] > nums2[stack[-1]]:
+                res[stack[-1]] = nums2[i]
+                stack.pop()
+            stack.append(i)
+        return [res[nums2.index(num)] for num in nums1]
+            
