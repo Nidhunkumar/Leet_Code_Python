@@ -23,3 +23,77 @@ Input: root = [0]
 Output: [0]
 
 '''
+class Solution:
+    def findMode(self, root: TreeNode) -> list[int]:
+
+        def dfs(root: TreeNode)-> None:
+            if not root: return
+
+            d[root.val]+=1
+
+            dfs(root.left)
+            dfs(root.right)
+
+            return
+
+            
+        d, ans = defaultdict(int), []
+        
+        dfs(root)
+        mx = max(d.values())
+
+        return [key for key in d if d[key] == mx]
+    
+#less time
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def findMode(self, root: Optional[TreeNode]) -> List[int]:
+        from collections import Counter
+        path = []
+        self.traverse(root, path)
+        count = Counter(path)
+        max_freq = max(count.values())
+
+        return [num for num, freq in count.items() if freq == max_freq]
+
+
+    def traverse(self, root, path):
+        if not root:
+            return
+
+        self.traverse(root.left, path)
+        path.append(root.val)
+        self.traverse(root.right, path)
+        
+#less memory
+from collections import Counter
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def findMode(self, root: Optional[TreeNode]) -> List[int]:
+        res=[]
+        def inorder(root):
+            if not root:
+                return 
+            root.left=inorder(root.left)
+            res.append(root.val)
+            root.right=inorder(root.right)
+        inorder(root)
+        x=Counter(res)
+        maxi=max(x.values())
+        ans=[]
+        for k,v in x.items():
+            if v==maxi:
+                ans.append(k)
+        return ans
+    
