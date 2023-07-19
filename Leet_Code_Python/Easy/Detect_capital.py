@@ -20,3 +20,29 @@ Input: word = "FlaG"
 Output: false
 
 '''
+class Solution:
+    def detectCapitalUse(self, word: str) -> bool:
+        all_capital=word.upper()
+        all_small=word.lower()
+        first_letter_capital=word.capitalize()
+
+        if all_capital==word or all_small==word or first_letter_capital==word:
+                return True
+        else:
+                return False
+
+#less time
+
+class Solution:
+    def detectCapitalUse(self, word: str) -> bool:
+        if word.isupper()==True or word.islower()==True or (word[0].isupper()==True and word[1:len(word)].islower()==True):
+            return True
+        else:
+            return False
+        
+#less memory
+class Solution:
+    def detectCapitalUse(self, word: str) -> bool:
+        return word.isupper() or word.islower() or word[0].isupper() and word[1:].islower()
+
+
