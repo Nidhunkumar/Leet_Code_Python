@@ -28,3 +28,23 @@ Output: -1
 Explanation: Every subsequence of string a is also a subsequence of string b. Similarly, every subsequence of string b is also a subsequence of string a.
 
 '''
+
+class Solution:
+  def findLUSlength(self, a: str, b: str) -> int:
+    return -1 if a == b else max(len(a), len(b))
+  
+#less time
+
+class Solution:
+    def findLUSlength(self, a: str, b: str) -> int:
+        if a==b: return -1
+        else:return max(len(a),len(b)) if len(a)!=len(b) else len(a)
+
+#less memory
+
+class Solution:
+    def findLUSlength(self, a: str, b: str) -> int:
+        if a == b:
+            return -1
+        return max(len(a), len(b))
+    
