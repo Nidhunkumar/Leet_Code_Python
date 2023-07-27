@@ -15,3 +15,29 @@ Example 2:
 Input: s = "God Ding"
 Output: "doG gniD"
 '''
+
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        return " ".join([x[::-1] for x in s.split()])
+
+#less time
+
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        words = s.split()
+
+        r = []
+
+        for word in words:
+            reversed_word = word[::-1]
+            r.append(reversed_word)
+        
+        return ' '.join(r)
+
+#less memory
+
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        l = s.split()
+        return " ".join(word[::-1] for word in l)
+
