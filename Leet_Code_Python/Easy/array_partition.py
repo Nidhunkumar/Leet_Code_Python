@@ -16,6 +16,34 @@ Example 2:
 
 Input: nums = [6,2,6,5,1,2]
 Output: 9
-Explanation: The optimal pairing is (2, 1), (2, 5), (6, 6). min(2, 1) + min(2, 5) + min(6, 6) = 1 + 2 + 6 = 9.
+Explanation: The optimal pairing is (2, 1), (2, 5), (6, 6). min(2, 1) + min(2, 5)
+ + min(6, 6) = 1 + 2 + 6 = 9.
 
 '''
+nums = [6,2,6,5,1,2]
+class Solution:
+    def arrayPairSum(self, nums: List[int]) -> int:
+        nums.sort()
+        return sum([nums[-i * 2] for i in range(1,len(nums)//2 + 1)])
+
+#less time
+class Solution:
+    def arrayPairSum(self, nums: List[int]) -> int:
+        return sum([n for i, n in enumerate(sorted(nums)) if i % 2 == 0])
+
+#less memory
+
+class Solution:
+    def arrayPairSum(self, nums: List[int]) -> int:
+        s = 0 
+        nums.sort()
+        ad = False
+        while nums:
+            mx = nums.pop()
+            if ad:
+                s += mx
+            ad = not ad
+        
+        return s
+        
+
