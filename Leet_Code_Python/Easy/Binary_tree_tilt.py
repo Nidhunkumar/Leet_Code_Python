@@ -38,3 +38,76 @@ Output: 9
 
 
 '''
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def calculate(self, root, total_tilt):
+        if root == None:
+            return 0
+        
+        left = self.calculate(root.left, total_tilt)
+        right = self.calculate(root.right, total_tilt)
+
+        total = left + right + root.val
+        
+        root.val = abs(left-right)
+        total_tilt[0] += root.val
+
+        return total
+
+
+    def findTilt(self, root: Optional[TreeNode]) -> int:
+        total_tilt = [0]
+        self.calculate(root, total_tilt)
+        return total_tilt[0]        
+    
+#less time
+
+class Solution:findTilt=lambda s,b:sum([t:=[],(h:=lambda n:[l:=h(n.left),r:=h(n.right),t.append(abs(r-l)),l+r+n.val][3]if n else 0)(b)][0])
+
+#less memory
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+from collections import deque
+class Solution:
+    def findTilt(self, root: Optional[TreeNode]) -> int:
+        if not root: return 0
+        queue = deque([root])
+        stack = []
+        res_sum = 0
+        while queue:
+            node = queue.popleft()
+            stack.append(node)
+            if node.left and node.right:
+                queue.append(node.left)
+                queue.append(node.right)
+            elif node.left and not node.right:
+                queue.append(node.left)
+            elif node.right and not node.left: 
+                queue.append(node.right)
+        
+        node_orig_val = node.val
+        while stack:
+            node = stack.pop()
+            if node.left and node.right:
+                node.val += (node.left.val + node.right.val)
+                res_sum += abs(node.left.val - node.right.val)
+            elif node.left and not node.right:
+                node.val += (node.left.val)
+                res_sum += abs(node.left.val)
+            elif node.right and not node.left: 
+                node.val += (node.right.val)
+                res_sum += abs(node.right.val)
+        return res_sum
+        
