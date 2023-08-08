@@ -26,3 +26,34 @@ Output: 1
 Explanation: Alice can only eat 4 / 2 = 2 candies. Even though she can eat 2 candies, she only has 1 type.
 
 '''
+
+class Solution:
+    def distributeCandies(self, candyType: List[int]) -> int:
+        return min(len(set(candyType)),len(candyType)//2)
+    
+
+#less time
+
+class Solution:
+    def distributeCandies(self, candyType: List[int]) -> int:
+        return min(len(set(candyType)), len(candyType) // 2)
+    
+#less memory
+class Solution:
+    def distributeCandies(self, candyType: List[int]) -> int:
+
+        candy_type_dict = {}
+        candy_type_len = len(candyType)
+        max_candies = 0
+
+        i = 0
+        while i < candy_type_len and max_candies < candy_type_len/2:
+            if candyType[i] not in candy_type_dict:
+                candy_type_dict[candyType[i]] = True
+                max_candies += 1
+            
+            i += 1
+        
+        return max_candies
+
+
