@@ -16,3 +16,76 @@ Input: root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,1
 Output: [2,6,14,11,7,3,12,8,4,13,9,10,5,1]
 
 '''
+
+class Solution:
+    def postorder(self, root: 'Node') -> List[int]:
+        arr = []
+        def order(root):
+            if root is None: return None
+            for i in root.children:
+                order(i)    
+            arr.append(root.val)
+        order(root)
+        return arr
+    
+#less time
+
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+"""
+
+class Solution:
+    def postorder(self, root: 'Node') -> List[int]:
+        if not root:
+            return None
+        
+        result = []
+        stack = [root]
+        prev = None
+        
+        while stack:
+            node = stack[-1]
+            
+            if not node.children or prev == node.children[-1]:
+                prev = stack.pop()
+                result.append(prev.val)
+            else:
+                for child in node.children[::-1]:
+                    stack.append(child)
+            
+        
+        return result
+
+#less memory
+
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+"""
+
+class Solution:
+    def postorder(self, root: 'Node') -> List[int]:
+
+        def dfs(node):
+            if not node:
+                return 
+
+
+            out=[]
+
+            for i in node.children:
+                out.extend(dfs(i))
+
+
+            out.append(node.val)
+
+            return out
+
+        return dfs(root)
