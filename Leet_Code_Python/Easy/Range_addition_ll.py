@@ -23,4 +23,37 @@ Input: m = 3, n = 3, ops = []
 Output: 9
 
 '''
-l=bytearray(1024*1024*1000)
+
+
+class Solution:
+    def maxCount(self, m: int, n: int, ops: List[List[int]]) -> int:
+        min_y = m
+        min_x = n
+
+        for y, x in ops:
+            min_y = min(min_y, y)
+            min_x = min(min_x, x)
+
+        return min_x * min_y
+    
+#less time
+class Solution:            
+    def maxCount(self, m: int, n: int, ops: List[List[int]]) -> int:
+        mn_r,mn_c = m,n
+
+        for r,c in ops:
+            mn_r,mn_c = min(mn_r,r),min(mn_c,c)
+        return mn_r*mn_c
+
+#less memory
+
+class Solution:
+    def maxCount(self, m: int, n: int, ops: List[List[int]]) -> int:
+        min_row , min_col = m , n
+        for x,y in ops:
+            min_row = min(min_row,x)
+            min_col = min(min_col,y)
+        return min_row * min_col    
+
+
+
