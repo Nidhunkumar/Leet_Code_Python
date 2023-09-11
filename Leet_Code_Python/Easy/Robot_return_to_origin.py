@@ -19,3 +19,39 @@ Input: moves = "LL"
 Output: false
 Explanation: The robot moves left twice. It ends up two "moves" to the left of the origin. We return false because it is not at the origin at the end of its moves.
 '''
+
+class Solution:
+    def judgeCircle(self, moves: str) -> bool:
+        original = [0, 0]
+        robot = [0, 0]
+        for m in moves:
+            if m == "U":
+                robot[1] += 1
+            elif m == "D":
+                robot[1] -= 1
+            elif m == "L":
+                robot[0] -= 1
+            else:
+                robot[0] += 1
+        return original == robot
+    
+#less time
+class Solution:
+    def judgeCircle(self, moves: str) -> bool:
+        return moves.count("L") == moves.count("R") and moves.count("U") == moves.count("D")
+
+#less memory
+class Solution:
+    def judgeCircle(self, moves: str) -> bool:
+        original = [0, 0]
+        robot = [0, 0]
+        for m in moves:
+            if m == "U":
+                robot[1] += 1
+            elif m == "D":
+                robot[1] -= 1
+            elif m == "L":
+                robot[0] -= 1
+            else:
+                robot[0] += 1
+        return original == robot
