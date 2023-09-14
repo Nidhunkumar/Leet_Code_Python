@@ -21,3 +21,42 @@ Explanation: The longest continuous increasing subsequence is [2] with length 1.
 increasing.
 
 '''
+
+class Solution:
+    def findLengthOfLCIS(self, nums: List[int]) -> int:
+        counter=1
+        temp=1
+        for i in range(0,len(nums)-1):
+            if nums[i]<nums[i+1]:
+                temp+=1
+                if temp>counter:
+                    counter=temp
+            else:
+                temp=1
+        return counter
+
+#less time
+class Solution:
+    def findLengthOfLCIS(self, nums: List[int]) -> int:
+        cu=0
+        an=0
+        for i in range(len(nums)):
+            if i>0 and nums[i-1]>=nums[i]:
+                an=i
+            cu=max(i-an+1,cu)
+        return cu
+#less memory
+class Solution:
+    def findLengthOfLCIS(self, nums: List[int]) -> int:
+        max_len = 0
+        counter = 0
+
+        for i in range(1,len(nums)):
+            if nums[i]>nums[i-1]:
+                counter+=1
+                if counter>=max_len:
+                    max_len=counter
+            else:
+                counter=0
+
+        return max_len+1
